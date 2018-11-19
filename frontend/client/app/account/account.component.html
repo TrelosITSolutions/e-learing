@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <app-account-sidebar></app-account-sidebar>
+    </div>
+    <div class="col-md-10">
+      <div class="text-center">
+        <app-loading [condition]="isLoading"></app-loading>
+      </div>
+      <app-toast [message]="toast.message"></app-toast>
+      <div class="card" *ngIf="!isLoading">
+        <div class="card">
+          <h5 class="card-header">
+            <i class="fa fa-gear fa-fw"></i> Public profile
+          </h5>
+          <div class="card-body">
+            <form #accountForm="ngForm" (ngSubmit)="save(user)">
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" required/>
+                <small id="emailHelp" class="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              </div>
+              <div class="form-group">
+                <label for="firstname">First name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="user.firstname"/>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname"/>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!accountForm.form.valid">Update profile</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

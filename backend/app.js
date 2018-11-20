@@ -3,7 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const adminRoutes = require("./routes/admin");
+const parentRoutes = require("./routes/parent");
 const studentRoutes = require("./routes/student");
+
 const app = express();
 
 mongoose
@@ -37,5 +40,7 @@ next();
 });
 
 app.use("/api/student", studentRoutes);
+app.use("/api/parent", parentRoutes);
+app.use("/api/admin", adminRoutes);
 
 module.exports = app;

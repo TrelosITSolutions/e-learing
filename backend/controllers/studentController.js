@@ -28,7 +28,7 @@ exports.createStudent = (req, res, next) => {
 
 exports.studentLogin = (req, res, next) => {
     let fetchedstudent;
-    student.findOne({ email: req.body.email })
+    Student.findOne({ email: req.body.email })
         .then(student => {
             if (!student) {
                 return res.status(401).json({
@@ -49,7 +49,7 @@ exports.studentLogin = (req, res, next) => {
                     email: fetchedstudent.email,
                     studentId: fetchedstudent._id,
                     role: {
-                            student: t,
+                            student: true,
                             parent: false,
                             admin: true,
                     }

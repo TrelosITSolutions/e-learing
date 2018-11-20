@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const userRoutes = require("./routes/user");
+const studentRoutes = require("./routes/student");
 const app = express();
 
 mongoose
@@ -36,6 +36,6 @@ res.setHeader(
 next();
 });
 
-app.use("/api/user", userRoutes);
+app.use("/api/student", studentRoutes);
 
 module.exports = app;

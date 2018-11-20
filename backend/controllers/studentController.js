@@ -1,19 +1,19 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/user");
+const student = require("../models/student");
 
-exports.createUser = (req, res, next) => {
+exports.createStudent = (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
-        const user = new User({
+        const student = new student({
             email: req.body.email,
             password: hash
         });
-        user
+        student
             .save()
             .then(result => {
                 res.status(201).json({
-                    message: "User created!",
+                    message: "student created!",
                     result: result
                 });
             })
@@ -25,17 +25,17 @@ exports.createUser = (req, res, next) => {
     });
 };
 
-exports.userLogin = (req, res, next) => {
-    let fetchedUser;
-    User.findOne({ email: req.body.email })
-        .then(user => {
-            if (!user) {
+exports.studentLogin = (req, res, next) => {
+    let fetchedstudent;
+    student.findOne({ email: req.body.email })
+        .then(student => {
+            if (!student) {
                 return res.status(401).json({
                     message: "Auth failed"
                 });
             }
-            fetchedUser = user;
-            return bcrypt.compare(req.body.password, user.password);
+            fetchedstudent = student;
+            return bcrypt.compare(req.body.password, student.password);
         })
         .then(result => {
             if (!result) {
@@ -44,14 +44,22 @@ exports.userLogin = (req, res, next) => {
                 });
             }
             const token = jwt.sign(
-                { email: fetchedUser.email, userId: fetchedUser._id },
+                {
+                    email: fetchedstudent.email,
+                    studentId: fetchedstudent._id,
+                    role: {
+                            student: true,
+                            parent: false,
+                            admin: false,
+                    }
+                },
                 process.env.JWT_KEY,
                 { expiresIn: "1h" }
             );
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                userId: fetchedUser._id
+                studentId: fetchedstudent._id
             });
         })
         .catch(err => {

@@ -1,20 +1,19 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const Student = require("../models/student");
+const Admin = require("../models/admin");
 
-exports.createStudent = (req, res, next) => {
-    console.log(req.body);
+exports.createAdmin = (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
-        const student = new Student({
+        const admin = new Admin({
             email: req.body.email,
             password: hash
         });
-        student
+        admin
             .save()
             .then(result => {
                 res.status(201).json({
-                    message: "student created!",
+                    message: "admin created!",
                     result: result
                 });
             })
@@ -26,17 +25,17 @@ exports.createStudent = (req, res, next) => {
     });
 };
 
-exports.studentLogin = (req, res, next) => {
-    let fetchedstudent;
-    student.findOne({ email: req.body.email })
-        .then(student => {
-            if (!student) {
+exports.adminLogin = (req, res, next) => {
+    let fetchedadmin;
+    admin.findOne({ email: req.body.email })
+        .then(admin => {
+            if (!admin) {
                 return res.status(401).json({
                     message: "Auth failed"
                 });
             }
-            fetchedstudent = student;
-            return bcrypt.compare(req.body.password, student.password);
+            fetchedadmin = admin;
+            return bcrypt.compare(req.body.password, admin.password);
         })
         .then(result => {
             if (!result) {
@@ -46,12 +45,12 @@ exports.studentLogin = (req, res, next) => {
             }
             const token = jwt.sign(
                 {
-                    email: fetchedstudent.email,
-                    studentId: fetchedstudent._id,
+                    email: fetchedadmin.email,
+                    adminId: fetchedadmin._id,
                     role: {
-                            student: t,
-                            parent: false,
-                            admin: true,
+                        admin: true,
+                        parent: false,
+                        admin: false,
                     }
                 },
                 process.env.JWT_KEY,
@@ -60,7 +59,7 @@ exports.studentLogin = (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                studentId: fetchedstudent._id
+                adminId: fetchedadmin._id
             });
         })
         .catch(err => {

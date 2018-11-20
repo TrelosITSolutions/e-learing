@@ -9,5 +9,11 @@
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.11",
     "mongoose-unique-validator": "^2.0.2"
+  },
+  "scripts": {
+    "start:server": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
   }
 }

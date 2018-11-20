@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const Parent = require("../models/parent");
 
 exports.createParent = (req, res, next) => {
+    console.log(req);
     bcrypt.hash(req.body.password, 10).then(hash => {
         const parent = new Parent({
             email: req.body.email,
@@ -27,7 +28,7 @@ exports.createParent = (req, res, next) => {
 
 exports.parentLogin = (req, res, next) => {
     let fetchedparent;
-    parent.findOne({ email: req.body.email })
+    Parent.findOne({ email: req.body.email })
         .then(parent => {
             if (!parent) {
                 return res.status(401).json({
@@ -48,8 +49,8 @@ exports.parentLogin = (req, res, next) => {
                     email: fetchedparent.email,
                     parentId: fetchedparent._id,
                     role: {
+                        student: false,
                         parent: true,
-                        parent: false,
                         admin: false,
                     }
                 },

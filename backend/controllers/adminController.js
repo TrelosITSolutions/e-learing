@@ -27,7 +27,7 @@ exports.createAdmin = (req, res, next) => {
 
 exports.adminLogin = (req, res, next) => {
     let fetchedadmin;
-    admin.findOne({ email: req.body.email })
+    Admin.findOne({ email: req.body.email })
         .then(admin => {
             if (!admin) {
                 return res.status(401).json({
@@ -48,9 +48,9 @@ exports.adminLogin = (req, res, next) => {
                     email: fetchedadmin.email,
                     adminId: fetchedadmin._id,
                     role: {
-                        admin: true,
+                        student: false,
                         parent: false,
-                        admin: false,
+                        admin: true,
                     }
                 },
                 process.env.JWT_KEY,

@@ -4,9 +4,9 @@ module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(" ")[1];
         const decodedToken = jwt.verify(token, process.env.JWT_KEY);
-        req.userData = { email: decodedToken.email, userId: decodedToken.parentId };
-        if(!decodedToken.role.parent) {
-            res.status(401).json({ message: "You are not Parent" });
+        req.userData = { email: decodedToken.email, userId: decodedToken.teacherId };
+        if(!decodedToken.role.teacher) {
+            res.status(401).json({ message: "You are not Teacher" });
         } else {
             next();
         }

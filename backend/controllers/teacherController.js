@@ -1,20 +1,20 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const Parent = require("../models/parent");
+const Teacher = require("../models/teacher");
 
-exports.createParent = (req, res, next) => {
-    console.log(req);
+exports.createTeacher = (req, res, next) => {
+    console.log(req.body);
     bcrypt.hash(req.body.password, 10).then(hash => {
-        const parent = new Parent({
+        const teacher = new Teacher({
             email: req.body.email,
             password: hash
         });
-        parent
+        teacher
             .save()
             .then(result => {
                 res.status(201).json({
-                    message: "parent created!",
+                    message: "teacher created!",
                     result: result
                 });
             })
@@ -26,17 +26,17 @@ exports.createParent = (req, res, next) => {
     });
 };
 
-exports.parentLogin = (req, res, next) => {
-    let fetchedparent;
-    Parent.findOne({ email: req.body.email })
-        .then(parent => {
-            if (!parent) {
+exports.teacherLogin = (req, res, next) => {
+    let fetchedteacher;
+    Teacher.findOne({ email: req.body.email })
+        .then(teacher => {
+            if (!teacher) {
                 return res.status(401).json({
                     message: "Auth failed"
                 });
             }
-            fetchedparent = parent;
-            return bcrypt.compare(req.body.password, parent.password);
+            fetchedteacher = teacher;
+            return bcrypt.compare(req.body.password, teacher.password);
         })
         .then(result => {
             if (!result) {
@@ -46,13 +46,13 @@ exports.parentLogin = (req, res, next) => {
             }
             const token = jwt.sign(
                 {
-                    email: fetchedparent.email,
-                    parentId: fetchedparent._id,
+                    email: fetchedteacher.email,
+                    teacherId: fetchedteacher._id,
                     role: {
                         student: false,
-                        parent: true,
+                        parent: false,
                         admin: false,
-                        teacher: false,
+                        teacher: true,
                     }
                 },
                 process.env.JWT_KEY,
@@ -61,7 +61,7 @@ exports.parentLogin = (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                parentId: fetchedparent._id
+                teacherId: fetchedteacher._id
             });
         })
         .catch(err => {

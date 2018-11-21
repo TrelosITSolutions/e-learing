@@ -51,6 +51,7 @@ exports.adminLogin = (req, res, next) => {
                         student: false,
                         parent: false,
                         admin: true,
+                        teacher: false,
                     }
                 },
                 process.env.JWT_KEY,

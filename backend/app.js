@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const adminRoutes = require("./routes/admin");
 const parentRoutes = require("./routes/parent");
 const studentRoutes = require("./routes/student");
+const teacherRoutes = require("./routes/teacher");
 
 const app = express();
 
@@ -43,5 +44,6 @@ next();
 app.use("/api/student", studentRoutes);
 app.use("/api/parent", parentRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/teacher", teacherRoutes);
 
 module.exports = app;

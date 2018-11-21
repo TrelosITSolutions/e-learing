@@ -51,7 +51,8 @@ exports.studentLogin = (req, res, next) => {
                     role: {
                             student: true,
                             parent: false,
-                            admin: true,
+                            admin: false,
+                            teacher: false,
                     }
                 },
                 process.env.JWT_KEY,

@@ -45,7 +45,9 @@ Thumbs.db
 //package-lock
 */package-lock.json
 
-//assets
-*/uploads/
 
-# remember making folder /uploads/courses/pdf
+# exclude everything
+/backend/uploads/courses/pdf/*
+
+# exception to the rule
+!/backend/uploads/courses/pdf/.gitkeep

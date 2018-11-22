@@ -44,3 +44,8 @@ Thumbs.db
 
 //package-lock
 */package-lock.json
+
+//assets
+*/uploads/
+
+# remember making folder /uploads/courses/pdf

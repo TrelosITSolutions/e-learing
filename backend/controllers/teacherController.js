@@ -2,9 +2,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Teacher = require("../models/teacher");
+const Course = require("../models/course");
 
 exports.createTeacher = (req, res, next) => {
-    console.log(req.body);
     bcrypt.hash(req.body.password, 10).then(hash => {
         const teacher = new Teacher({
             email: req.body.email,
@@ -67,6 +67,27 @@ exports.teacherLogin = (req, res, next) => {
         .catch(err => {
             return res.status(401).json({
                 message: "Invalid authentication credentials!"
+            });
+        });
+};
+exports.uploadCourse = (req, res, next) => {
+    const url = req.protocol + "://" + req.get("host");
+    const course = new Course({
+        name: req.body.name,
+        content: req.body.content,
+        imagePath: url + "/uploads/courses/pdf" + req.file.filename,
+    });
+    course.save().then(createdCourse => {
+        res.status(201).json({
+            message: "Course uploaded successfully",
+            course: {
+                ...createdCourse,
+                courseId: createdCourse._id,
+            }
+        });
+    }).catch(error => {
+            res.status(500).json({
+                message: "Creating a upload failed! | Try a different name of upload | file type must be pdf "
             });
         });
 };

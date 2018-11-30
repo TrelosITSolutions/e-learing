@@ -44,3 +44,10 @@ Thumbs.db
 
 //package-lock
 */package-lock.json
+
+
+# exclude everything
+/backend/uploads/courses/pdf/*
+
+# exception to the rule
+!/backend/uploads/courses/pdf/.gitkeep

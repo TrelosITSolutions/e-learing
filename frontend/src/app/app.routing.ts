@@ -4,30 +4,57 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
+import { ParentLayoutComponent } from './layouts/parent-layout/parent-layout.component';
+import { TeacherLayoutComponent } from './layouts/teacher-layout/teacher-layout.component';
 
-const routes: Routes =[
+const routes: Routes = [
+  
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'admin',
     component: AdminLayoutComponent,
+    children: [
+      {
+      path: '',
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      }]
+    },
+  {
+    path: 'student',
+    component: StudentLayoutComponent,
     children: [
         {
       path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-  }]}
-    // { path: 'dashboard',      component: DashboardComponent },
-    // { path: 'user-profile',   component: UserProfileComponent },
-    // { path: 'table-list',     component: TableListComponent },
-    // { path: 'typography',     component: TypographyComponent },
-    // { path: 'icons',          component: IconsComponent },
-    // { path: 'maps',           component: MapsComponent },
-    // { path: 'notifications',  component: NotificationsComponent },
-    // { path: 'upgrade',        component: UpgradeComponent },
-    // { path: '',               redirectTo: 'dashboard', pathMatch: 'full' }
-];
+      loadChildren: './layouts/student-layout/student-layout.module#StudentLayoutModule'
+    }]},
+  {
+    path: 'parent',
+    component: ParentLayoutComponent,
+    children: [
+        {
+      path: '',
+      loadChildren: './layouts/parent-layout/parent-layout.module#ParentLayoutModule'
+  }]},
+  {
+    path: 'teacher',
+    component: TeacherLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layouts/teacher-layout/teacher-layout.module#TeacherLayoutModule'
+      }
+    ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+}];
 
 @NgModule({
   imports: [

@@ -22,6 +22,12 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { TeacherLayoutComponent } from './layouts/teacher-layout/teacher-layout.component';
+import { ParentLayoutComponent } from './layouts/parent-layout/parent-layout.component';
+import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -38,6 +44,15 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    StudentLayoutComponent,
+    ParentLayoutComponent,
+    TeacherLayoutComponent,
+    LoginComponent,
+    RegisterComponent,
+    TeacherLayoutComponent,
+    ParentLayoutComponent,
+    StudentLayoutComponent,
+    NotFoundComponent,
 
   ],
   providers: [],

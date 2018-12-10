@@ -6,7 +6,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
     'browserName': 'chrome'
@@ -21,15 +21,10 @@ exports.config = {
   },
   beforeLaunch: function() {
     require('ts-node').register({
-<<<<<<< HEAD:frontend/e2e/protractor.conf.js
-      project: require('path').join(__dirname, './tsconfig.e2e.json')
-    });
-=======
       project: 'e2e/tsconfig.e2e.json'
     });
   },
   onPrepare() {
->>>>>>> e05683a3eeb88b54b4feaab8f620d854e9cedf53:frontend/protractor.conf.js
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };

@@ -1,11 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-<<<<<<< HEAD
-    "outDir": "../out-tsc/app",
-=======
     "outDir": "../out-tsc/e2e",
->>>>>>> e05683a3eeb88b54b4feaab8f620d854e9cedf53
     "module": "commonjs",
     "target": "es5",
     "types":[

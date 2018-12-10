@@ -12,7 +12,7 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    client: {
+    client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
@@ -25,20 +25,15 @@ module.exports = function (config) {
       'text/x-typescript': ['ts','tsx']
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage'),
-      reports: ['html', 'lcovonly'],
+      dir: require('path').join(__dirname, 'coverage'), reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
     },
-<<<<<<< HEAD:frontend/src/karma.conf.js
-    reporters: ['progress', 'kjhtml'],
-=======
     angularCli: {
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],
->>>>>>> e05683a3eeb88b54b4feaab8f620d854e9cedf53:frontend/karma.conf.js
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

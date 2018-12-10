@@ -3,11 +3,8 @@
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
     "module": "commonjs",
-<<<<<<< HEAD:frontend/src/tsconfig.spec.json
-=======
     "target": "es5",
     "baseUrl": "",
->>>>>>> e05683a3eeb88b54b4feaab8f620d854e9cedf53:frontend/src/tsconfig.spec.json
     "types": [
       "jasmine",
       "node"

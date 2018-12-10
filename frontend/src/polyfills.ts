@@ -48,7 +48,6 @@ import 'web-animations-js';  // Run `npm install --save webå-animations-js`.
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
 import 'core-js/es7/reflect';
 
-<<<<<<< HEAD:frontend/src/polyfills.ts
 
 /**
  * Web Animations `@angular/platform-browser/animations`
@@ -56,19 +55,6 @@ import 'core-js/es7/reflect';
  * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
-=======
-
-/** ALL Firefox browsers require the following to support `@angular/animation`. **/
-import 'web-animations-js';  // Run `npm install --save web-animations-js`.
-
-
-
-/***************************************************************************************************
- * Zone JS is required by Angular itself.
- */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
-
->>>>>>> e05683a3eeb88b54b4feaab8f620d854e9cedf53:frontend/src/polyfills.ts
 
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
@@ -88,7 +74,6 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-<<<<<<< HEAD:frontend/src/polyfills.ts
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
@@ -96,6 +81,3 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-=======
-// import 'intl';  // Run `npm install --save intl`.
->>>>>>> e05683a3eeb88b54b4feaab8f620d854e9cedf53:frontend/src/polyfills.ts

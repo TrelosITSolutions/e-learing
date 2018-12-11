@@ -5,12 +5,16 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-*/dist
-*/tmp
-*/out-tsc
+/dist
+/tmp
+/out-tsc
 
 # dependencies
 */node_modules/*
+*node_modules/*
+*.vs/*
+*.vs/
+
 
 # IDEs and editors
 /.idea
@@ -42,7 +46,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# package-lock
+//package-lock
 */package-lock.json
 
 

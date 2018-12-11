@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
 import { ParentLayoutComponent } from './layouts/parent-layout/parent-layout.component';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'admin',

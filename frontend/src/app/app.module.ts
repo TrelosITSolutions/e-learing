@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
 import { AppComponent } from './app.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -28,9 +27,26 @@ import { TeacherLayoutComponent } from './layouts/teacher-layout/teacher-layout.
 import { ParentLayoutComponent } from './layouts/parent-layout/parent-layout.component';
 import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatSelectModule,
+  MatCardModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
 @NgModule({
   imports: [
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,

@@ -13,17 +13,18 @@ export class AdminAuthService {
         headers = headers.append('Content-Type', 'application/json');
         return this.http.post(environment.apiUrl + '/api/admin/login', JSON.stringify(credentials), { headers });
     }
-    isAdminAuthenticated(){
+    isAdminAuthenticated() {
         const promise = new Promise(
             (resolve, reject) => {
-                this.localStorage.getItem('token').subscribe((user) => {
-                    this.loggedIn = true; // should be 'Henri'
+                this.localStorage.getItem('token').subscribe((token) => {
+                    if (token && token.role === 'admin'){
+                    this.loggedIn = true;
+                    this.isAdmin = true;
+                    console.log(this.isAdmin);
+                    console.log(this.loggedIn);
+                    resolve(true);
+                    } else {resolve(false); }
                   });
-                  this.localStorage.getItem('role').subscribe((data) => {
-                    if(data === 'admin') {this.isAdmin = true;} // should be 'Henri'
-                  });
-                  if(this.loggedIn === true && this.isAdmin === true) {resolve(true);}
-
             }
           );
           return promise;

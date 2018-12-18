@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    // canActivate: [AdminAuthGuard],
+    canActivate: [AdminAuthGuard],
     component: AdminLayoutComponent,
     children: [
       {
@@ -42,7 +42,7 @@ const routes: Routes = [
     },
   {
     path: 'student',
-    // canActivate: [StudentAuthGuard],
+    canActivate: [StudentAuthGuard],
     component: StudentLayoutComponent,
     children: [
         {
@@ -51,7 +51,7 @@ const routes: Routes = [
     }]},
   {
     path: 'parent',
-    // canActivate: [ParentAuthGuard],
+    canActivate: [ParentAuthGuard],
     component: ParentLayoutComponent,
     children: [
         {
@@ -60,7 +60,7 @@ const routes: Routes = [
   }]},
   {
     path: 'teacher',
-    // canActivate: [TeacherAuthGuard],
+    canActivate: [TeacherAuthGuard],
     component: TeacherLayoutComponent,
     children: [
       {

@@ -22,13 +22,15 @@ export class ParentAuthService {
     isParentAuthenticated(){
         const promise = new Promise(
             (resolve, reject) => {
-                this.localStorage.getItem('token').subscribe((user) => {
-                    this.loggedIn = true; // should be 'Henri'
+                this.localStorage.getItem('token').subscribe((token) => {
+                    if (token && token.role === 'parent'){
+                    this.loggedIn = true;
+                    this.isParent = true;
+                    console.log(this.isParent);
+                    console.log(this.loggedIn);
+                    resolve(true);
+                    } else {resolve(false); }
                   });
-                  this.localStorage.getItem('role').subscribe((data) => {
-                    if(data === 'parent') {this.isParent = true;} // should be 'Henri'
-                  });
-                  if(this.loggedIn === true && this.isParent === true) {resolve(true);}
             }
           );
           return promise;

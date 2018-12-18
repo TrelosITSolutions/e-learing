@@ -16,14 +16,15 @@ export class StudentAuthService {
     isStudentAuthenticated(){
         const promise = new Promise(
             (resolve, reject) => {
-                this.localStorage.getItem('token').subscribe((user) => {
-                    this.loggedIn = true; // should be 'Henri'
+                this.localStorage.getItem('token').subscribe((token) => {
+                    if (token && token.role === 'student'){
+                    this.loggedIn = true;
+                    this.isStudent = true;
+                    console.log(this.isStudent);
+                    console.log(this.loggedIn);
+                    resolve(true);
+                    } else {resolve(false); }
                   });
-                  this.localStorage.getItem('role').subscribe((data) => {
-                    if(data === 'student') {this.isStudent = true;} // should be 'Henri'
-                  });
-                  if(this.loggedIn === true && this.isStudent === true) {resolve(true);}
-
             }
           );
           return promise;

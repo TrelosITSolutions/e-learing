@@ -46,6 +46,7 @@ import { AdminAuthGuard } from './services/admin/adminAuth-guard.service';
 import { ParentAuthGuard } from './services/parent/parentAuth-guard.service';
 import { TeacherAuthGuard } from './services/teacher/teacherAuth-guard.service';
 import { StudentAuthGuard } from './services/student/studentAuth-guard.service';
+import { IsAuthenticatedService } from './services/isAuthenticated.service';
 @NgModule({
   imports: [
     MatButtonModule,
@@ -86,7 +87,8 @@ import { StudentAuthGuard } from './services/student/studentAuth-guard.service';
     AdminAuthGuard, 
     ParentAuthGuard, 
     TeacherAuthGuard, 
-    StudentAuthGuard],
+    StudentAuthGuard,
+  IsAuthenticatedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

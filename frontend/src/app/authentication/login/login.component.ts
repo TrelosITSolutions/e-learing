@@ -6,6 +6,7 @@ import { TeacherAuthService } from 'app/services/teacher/teacherAuth.service';
 import { ParentAuthService } from 'app/services/parent/parentAuth.service';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { IsAuthenticatedService } from 'app/services/isAuthenticated.service';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,29 @@ export class LoginComponent implements OnInit {
     private studentAuthService: StudentAuthService,
     protected localStorage: LocalStorage,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private isAuth: IsAuthenticatedService) {}
   ngOnInit() {
+    this.isAuth.isAuthenticated().then(
+      (authenticated: boolean) => {
+        if (authenticated) {
+          console.log('true');
+          if (this.isAuth.role === 'admin') {
+            this.router.navigate(['/admin']);
+          }
+          if (this.isAuth.role === 'parent') {
+            this.router.navigate(['/parent']);
+          }
+          if (this.isAuth.role === 'student') {
+            this.router.navigate(['/student']);
+          }
+          if (this.isAuth.role === 'teacher') {
+            this.router.navigate(['/teacher']);
+          }
+
+        }
+      }
+    );
     this.loginForm = new FormGroup({
       'email' : new FormControl(null, [Validators.required, Validators.email]),
       'password' : new FormControl(null, Validators.required),

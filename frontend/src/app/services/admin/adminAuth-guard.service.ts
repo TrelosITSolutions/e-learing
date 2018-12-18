@@ -17,9 +17,10 @@ import {
         .then(
           (authenticated: boolean) => {
             if (authenticated) {
+              console.log('true')
               return true;
             } else {
-                this.router.navigate(['/']);
+                this.router.navigate(['/login']);
             }
           }
         );

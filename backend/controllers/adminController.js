@@ -26,6 +26,7 @@ exports.createAdmin = (req, res, next) => {
 };
 
 exports.adminLogin = (req, res, next) => {
+    console.log(req.body);
     let fetchedadmin;
     Admin.findOne({ email: req.body.email })
         .then(admin => {
@@ -60,7 +61,8 @@ exports.adminLogin = (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                adminId: fetchedadmin._id
+                role: 'admin',
+                id: fetchedadmin._id
             });
         })
         .catch(err => {

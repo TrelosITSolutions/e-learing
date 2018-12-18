@@ -1,34 +1,36 @@
-
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Register</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="example-form">
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username" ngModel name="username" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-            <input matInput placeholder="Login" ngModel name="username" required email>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-        <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" ngModel type="password" name="password" required>
-        </mat-form-field></td>
-      </tr></table>
-    </form>
-    <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="register()" color="primary">Login</button>
-  </mat-card-actions>
-</mat-card>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Register</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <div class="row">                              
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                      <input formControlName="email" matInput placeholder="Email">
+                                    </mat-form-field>
+                                </div>
+                              </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input formControlName= "password" matInput placeholder="Password" type="password">
+                                  </mat-form-field>
+                                </div>                              
+                            </div>                           
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-left" [disabled]=!registerForm.valid>Register</button>
+                            <div class="clearfix"></div>
+                        </form>    
+                            <a href="/login">Already a user? Click Here to Login</a>
+                            <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+  </div>
+  

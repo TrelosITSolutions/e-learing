@@ -1,8 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app.routing';
@@ -37,6 +38,15 @@ import {
   MatCardModule,
   MatProgressSpinnerModule
 } from '@angular/material';
+import { AdminAuthService } from './services/admin/adminAuth.service';
+import { ParentAuthService } from './services/parent/parentAuth.service';
+import { StudentAuthService } from './services/student/studentAuth.service';
+import { TeacherAuthService } from './services/teacher/teacherAuth.service';
+import { AdminAuthGuard } from './services/admin/adminAuth-guard.service';
+import { ParentAuthGuard } from './services/parent/parentAuth-guard.service';
+import { TeacherAuthGuard } from './services/teacher/teacherAuth-guard.service';
+import { StudentAuthGuard } from './services/student/studentAuth-guard.service';
+import { IsAuthenticatedService } from './services/isAuthenticated.service';
 @NgModule({
   imports: [
     MatButtonModule,
@@ -53,6 +63,8 @@ import {
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
@@ -67,7 +79,16 @@ import {
     StudentLayoutComponent,
     NotFoundComponent,
   ],
-  providers: [],
+  providers: [
+    AdminAuthService, 
+    ParentAuthService, 
+    StudentAuthService, 
+    TeacherAuthService, 
+    AdminAuthGuard, 
+    ParentAuthGuard, 
+    TeacherAuthGuard, 
+    StudentAuthGuard,
+  IsAuthenticatedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

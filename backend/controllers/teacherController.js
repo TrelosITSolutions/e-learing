@@ -61,7 +61,8 @@ exports.teacherLogin = (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                teacherId: fetchedteacher._id
+                role: 'teacher',
+                id: fetchedteacher._id
             });
         })
         .catch(err => {

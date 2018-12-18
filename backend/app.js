@@ -24,8 +24,9 @@ mongoose
         console.log("Connection failed!");
     });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json({type: 'application/json'}));
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
 app.use("/uploads", express.static(path.join("uploads")));
 
 app.use((req, res, next) => {

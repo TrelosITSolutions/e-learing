@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Parent = require("../models/parent");
 
 exports.createParent = (req, res, next) => {
-    console.log(req);
+    console.log(req.body);
     bcrypt.hash(req.body.password, 10).then(hash => {
         const parent = new Parent({
             email: req.body.email,
@@ -23,8 +23,11 @@ exports.createParent = (req, res, next) => {
                     message: "Invalid authentication credentials!"
                 });
             });
-    });
-};
+    }).catch(err => {
+        res.status(500).json({
+            message: "Some Error Occurred!"
+        });
+});};
 
 exports.parentLogin = (req, res, next) => {
     let fetchedparent;
@@ -61,7 +64,8 @@ exports.parentLogin = (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                parentId: fetchedparent._id
+                role: 'parent',
+                id: fetchedparent._id
             });
         })
         .catch(err => {

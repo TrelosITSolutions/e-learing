@@ -7,12 +7,21 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
+import { AdminAuthGuard } from './services/admin/adminAuth-guard.service';
+import { TeacherAuthGuard } from './services/teacher/teacherAuth-guard.service';
+import { StudentAuthGuard } from './services/student/studentAuth-guard.service';
+import { ParentAuthGuard } from './services/parent/parentAuth-guard.service';
 import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
 import { ParentLayoutComponent } from './layouts/parent-layout/parent-layout.component';
 import { TeacherLayoutComponent } from './layouts/teacher-layout/teacher-layout.component';
 
 const routes: Routes = [
-  
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+},
   {
     path: 'login',
     component: LoginComponent
@@ -23,6 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    // canActivate: [AdminAuthGuard],
     component: AdminLayoutComponent,
     children: [
       {
@@ -32,6 +42,7 @@ const routes: Routes = [
     },
   {
     path: 'student',
+    // canActivate: [StudentAuthGuard],
     component: StudentLayoutComponent,
     children: [
         {
@@ -40,6 +51,7 @@ const routes: Routes = [
     }]},
   {
     path: 'parent',
+    // canActivate: [ParentAuthGuard],
     component: ParentLayoutComponent,
     children: [
         {
@@ -48,6 +60,7 @@ const routes: Routes = [
   }]},
   {
     path: 'teacher',
+    // canActivate: [TeacherAuthGuard],
     component: TeacherLayoutComponent,
     children: [
       {
